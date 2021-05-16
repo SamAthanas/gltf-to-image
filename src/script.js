@@ -12,10 +12,12 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 // Debug
 const gui = new dat.GUI();
 
-var pictures = { value: 15 }
+var pictures = { value: 15 };
 var lightParams = { color:0xFFFFFF, bgColor:0xFFFFFF };
-var textParams = { text: "export_name" }
+var textParams = { text: "export_name" };
+var modelRotation = { x:0,y:0,z:0 };
 
+gui.add(modelRotation, 'z', 0, Math.PI*2).step(Math.PI / 4).name("Rotation Z").onChange(() => { if (loadedModel) loadedModel.rotation.z = modelRotation.z});
 gui.add(pictures, 'value', 1, 100).step(1).name("# Of Pictures");
 gui.addColor(lightParams,"color").name("Model Color").onChange( () => pointLight.color.set(lightParams.color));
 gui.addColor(lightParams,"bgColor").name("BG Color").onChange( () => renderer.setClearColor(lightParams.bgColor,1));

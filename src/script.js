@@ -77,8 +77,10 @@ async function rotateAndSave() {
         imgData.push(renderer.domElement.toDataURL("image/jpeg") );
     }
 
-    for(let i = 0; i < imgData.length;i++)
+    for(let i = 0; i < imgData.length;i++) {
         saveAsImage(imgData[i],i);
+        await delay(1000);
+    }
 }
 
 function saveAsImage(imgData,index) {
